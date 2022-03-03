@@ -42,7 +42,17 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $form_data = $request->all();
+
+        $request->validate($this->getValidationRules());
+
+        $new_post = new Post();
+        $new_post->fill($form_data);
+
+        $new_post->slug = Post::getUniqueSlugFromTitle($form_data['title']);
+        
+        $new_post->save();
+        return redirect()->route('admin.posts.show', ['post' => $new_post->id]);
     }
 
     /**
@@ -53,7 +63,13 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+        $post = Post::findOrFail($id);
+
+        $data = [
+            'post' => $post
+        ];
+        
+        return view('admin.posts.show', $data);
     }
 
     /**
@@ -89,4 +105,14 @@ class PostController extends Controller
     {
         //
     }
+
+    protected function getValidationRules() {
+        return [
+            'title' => 'required|max:255',
+            'image' => 'required',
+            'content' => 'required|max:60000',
+            
+        ];
+    }
+
 }

@@ -28,6 +28,25 @@
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
 
+            <div class="mb-3">
+                <label for="image" class="form-label">Image</label>
+                <input type="text" class="form-control" id="image" name="image" value="{{ old('image') }}">
+              </div>
+  
+              @error('image')
+                  <div class="alert alert-danger">{{ $message }}</div>
+              @enderror
+
+              {{-- <select class="form-select" aria-label="Default select example">
+                <option selected>type</option>
+                <option value="post">post</option>
+                <option value="special">special post</option>
+              </select>
+
+              @error('type')
+                  <div class="alert alert-danger">{{ $message }}</div>
+              @enderror --}}
+
             {{-- <div class="mb-3">
                 <label for="category_id" class="form-label">Categoria</label>
                 <select class="form-select" id="category_id" name="category_id">
@@ -68,7 +87,7 @@
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
 
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary">Crea</button>
           </form>
     </section>
 @endsection

@@ -11,9 +11,10 @@
                         <div class="card mt-2">
                             {{-- <img src="..." class="card-img-top" alt="..."> --}}
                             <div class="card-body">
-                            <h5 class="card-title">{{ $post->title }}</h5>
-                            <p class="card-text">{{ Str::substr($post->content, 0, 70) }}...</p>
-                            <a href="{{ route('admin.posts.show', ['post' => $post->id]) }}" class="btn btn-primary">Leggi il post</a>
+                                <img class="card-img-top" src="{{ $post->image }}" alt="Card image cap">
+                                <h5 class="card-title">{{ $post->title }}</h5>
+                                <p class="card-text">{{ Str::substr($post->content, 0, 70) }}...</p>
+                                <a href="{{ route('admin.posts.show', ['post' => $post->id]) }}" class="btn btn-primary">Leggi il post</a>
                             </div>
                         </div>
                     </div>
